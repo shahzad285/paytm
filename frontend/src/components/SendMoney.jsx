@@ -17,4 +17,4 @@ export function SendMoney() {
             </div>
         </div>
     </>
-}
+} 

@@ -1,4 +1,10 @@
+import axios from "axios"
+import { useState } from "react";
 export function SignUp() {
+  const [firstName, setFirstName] =useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   return <>
     <div className="min-h-screen bg-custom-color flex justify-center items-center">
       <div className="rounded bg-slate-50 p-4 ">
@@ -8,14 +14,21 @@ export function SignUp() {
         </div>
         <div className="flex flex-col justify-start text-xs  mb-3 text-slate-700">
           <label className="font-bold mb-2" htmlFor="">First Name</label>
-          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="John" />
+          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="John" onChange={e => { setFirstName(e.target.value) }} />
           <label className="font-bold mb-2" htmlFor="">Last Name</label>
-          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="Doe" />
+          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="Doe" onChange={e => { setLastName(e.target.value) }} />
           <label className="font-bold mb-2" htmlFor="">Email</label>
-          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="Johndoe@example.com" />
+          <input className="rounded border border-gray-500 p-1 mb-4" type="text" placeholder="Johndoe@example.com"  onChange={e => { setUserName(e.target.value) }} />
           <label className="font-bold mb-2" htmlFor="">Password</label>
-          <input className="rounded border border-gray-500 p-1 mb-4" type="password" />
-          <button className="rounded bg-slate-900 text-slate-50 p-2 font-bold">Sign Up</button>
+          <input className="rounded border border-gray-500 p-1 mb-4" type="password"  onChange={e => { setPassword(e.target.value) }} />
+          <button className="rounded bg-slate-900 text-slate-50 p-2 font-bold" onClick={()=>{
+            axios.post("",{
+              username:userName,
+              password:password,
+              firstname:firstName,
+              lastname:lastName
+            })
+          }}>Sign Up</button>
         </div>
         <div className="text-center text-slate-700">
           <label className="font-bold text-xs">Already have an account? <span className="underline">Login</span></label>
