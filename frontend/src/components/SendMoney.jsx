@@ -1,6 +1,11 @@
-export function SendMoney() {
+export function SendMoney({visible,onClose}) {
+    const handleOnClose=(e)=>{
+        if(e.target.id==="container")
+        onClose();
+    };
+    if(!visible) return null;
     return <>
-        <div className="min-h-screen bg-custom-color flex justify-center items-center">
+        <div id="container" onClick={handleOnClose} className="fixed inset-0 bg-custom-color bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
             <div className="rounded bg-slate-50 p-5 sm:w-2/3 md:w-1/2 lg:w-1/3">
                 <div className="flex flex-col items-center justify-center w-5/6 text-center pl-3 pb-10">
                     <div className="text-xl font-bold mb-1">Send Money</div>

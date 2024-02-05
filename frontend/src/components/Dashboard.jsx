@@ -1,8 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import { SendMoney } from "./SendMoney";
 
 export function Dashboard() {
     const [users, setUsers] = useState([]);
+    const [showModal,setShowModal]=useState(false);
+   
+    const handleOnClose=()=>{
+        setShowModal(false);
+    }
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -29,17 +35,18 @@ export function Dashboard() {
                 <div className="mt-2">
                     <input className="border text-xs p-2 rounded-md w-full" type="text" placeholder="Search users..." />
                 </div>
-                {users.map((item) => {
+                {users.map((item) => (
                     <div className="flex justify-between mt-6">
 
                         <div className="flex">
                             <label htmlFor="" className=" bg-neutral-300 rounded-full px-2 py-2"> U1</label>
                             <label htmlFor="" className="ml-3 py-2 font-bold"> {item.firstName + " " + item.lastName}</label>
-                        </div>                    <button htmlFor="" className="text-xs bg-slate-900 rounded-md text-slate-100 px-5 py-1">Send Money</button>
+                        </div>                    <button htmlFor="" className="text-xs bg-slate-900 rounded-md text-slate-100 px-5 py-1" onClick={() => setShowModal(true)}>Send Money</button>
                     </div>
-                })}
+                ))}
 
             </div>
         </div>
+    <SendMoney onClose={handleOnClose} visible={showModal}/>
     </>
 }

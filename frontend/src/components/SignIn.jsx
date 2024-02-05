@@ -24,7 +24,7 @@ export function SignIn() {
           }}>Sign In</button>
           </div>
           <div className="text-center text-slate-700">
-            <label className="font-bold text-xs">Don't have an account? <span className="underline">Sign Up</span></label>
+            <label className="font-bold text-xs">Don't have an account? <a className="underline" href="./signup">Sign Up</a></label>
           </div>
         </div>
       </div>
